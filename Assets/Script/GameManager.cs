@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private bool GameQuiz = false;
     public bool GameReady = false;
     private bool Quiz1 = false;
+    private bool attente = false;
     private bool scorePhaseExecuted = false; // Nouveau booléen pour suivre l'exécution de PhaseScore
     public SpawnLogique techspawn;
     [SerializeField] public PaperPlaneTest Plane;
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
 
     private void PhaseGameOne()
     {
+
         foreach (PlayerData p in PlayerInGame)
         {
             p.CanShoot = true;
@@ -165,12 +167,16 @@ public class GameManager : MonoBehaviour
             GameDecompte = false;
             GameQuiz = true;
             scorePhaseExecuted = false; // Réinitialiser le booléen pour permettre l'exécution de PhaseScore
+            attente = true;
             StartCoroutine(SendGameState());
         }
+       
     }
 
     private void PhaseScore()
     {
+       
+        TimeNow = 0;
         scorePhaseExecuted = true; // Marquez PhaseScore comme exécuté
         TimeNow += Time.deltaTime;
         var tmpPlayers = PlayerInGame.ToList().OrderByDescending(el => el.planeInZone).ToList();
@@ -181,6 +187,8 @@ public class GameManager : MonoBehaviour
         {
             p.CanShoot = false;
         }
+
+        
         chrono.text = "Score TIME";
         if (PlayerInGame.Count > 0)
         {
@@ -192,32 +200,45 @@ public class GameManager : MonoBehaviour
                 newBullefirst.Add(newBulle);
                 Animator animator = firstPlayer.PlayerSkin.GetComponent<Animator>();
                 animator.Play(Perdu);
-
-                if (TimeNow > 5f)
+                if (attente)
                 {
-                    TimeNow = 0;
-                    etape++;
-
-                    StartCoroutine(SendGameState());
-                    foreach (Canvas c in newBullefirst)
+                    ExecutePhaseScoreAfterDelay(5);
+                }
+                else
+                {
+                    if (!playerEquality)
                     {
-                        Destroy(c.gameObject);
+                        firstPlayer.CanShoot = false;
+                        foreach (Canvas c in newBullefirst)
+                        {
+                            Destroy(c.gameObject);
+                        }
+                        PlayerInGame.Remove(firstPlayer);
+                        newBullefirst.Clear();
                     }
-                    newBullefirst.Clear();
-                }
-                firstPlayer.CanShoot = false;
-                PlayerInGame.Remove(firstPlayer);
+                    else if (playerEquality)
+                    {
+                        Debug.Log("Nouvelle Manche");
+                        foreach (PlayerData p in PlayerInGame)
+                        {
+                            p.planeInZone = 0;
+                        }
+                        GamePlay = true;
+                    }
 
-                if (etape == 1)
-                {
-                    Quiz1 = true;
-                    GameDecompte = false;
+
+                    if (etape == 1)
+                    {
+
+                        Quiz1 = true;
+                        DestroyAllPlanes();
+                        GameDecompte = false;
+
+                    }
                 }
+
             }
-            else if (playerEquality)
-            {
-                Debug.Log("Nouvelle Manche");
-            }
+            
         }
 
         // LOGIQUE DU PROF QUI POSE UNE QUESTION
@@ -251,6 +272,15 @@ public class GameManager : MonoBehaviour
             ConnexionPage.enabled = true;
             NbJoinPlayer.text = PlayerJoin.Count.ToString();
         }
+    }
+
+    private IEnumerator ExecutePhaseScoreAfterDelay(float delay)
+    {
+        scorePhaseExecuted = true; // Marquez PhaseScore comme exécuté pour éviter de lancer plusieurs coroutines
+        yield return new WaitForSeconds(delay);
+        attente = false;
+        PhaseScore();
+       
     }
 
     IEnumerator SendGameState()
@@ -290,5 +320,20 @@ public class GameManager : MonoBehaviour
             GamePlay = true;
             Quiz1 = false;
         }
+    }
+
+    public void DestroyAllPlanes()
+    {
+        // Trouver tous les objets avec le tag "plane"
+        GameObject[] planes = GameObject.FindGameObjectsWithTag("plane");
+
+        // Détruire chaque objet trouvé
+        foreach (GameObject plane in planes)
+        {
+            Destroy(plane);
+        }
+
+        // Log pour confirmation
+        Debug.Log("Tous les objets avec le tag 'plane' ont été détruits.");
     }
 }
