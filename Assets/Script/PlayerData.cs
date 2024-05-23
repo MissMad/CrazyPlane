@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewPlayer", menuName = "PlayerData", order = 1)]
 
@@ -19,5 +20,6 @@ public class PlayerData : ScriptableObject
     public Vector3 directionplane;
     public GameObject placement;
     public string Equipe;
+    public Canvas bulleequipe;
    
 }

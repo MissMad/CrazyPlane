@@ -16,7 +16,10 @@ MonoBehaviour:
   PlayerSkin: {fileID: 1339587467147603124, guid: e7a0927be75ed0a4fa0073421c06d143, type: 3}
   CanShoot: 0
   planeInZone: 0
+  Mains: {fileID: 0}
   ZonePlayer: {fileID: 0}
+  ForceEnvoi: 0
   directionplane: {x: -22, y: 5, z: 140}
   placement: {fileID: 0}
   Equipe: Blue
+  bulleequipe: {fileID: 6691017118898968639, guid: 29b7514b7cb4c8445871c9af8f857405, type: 3}
