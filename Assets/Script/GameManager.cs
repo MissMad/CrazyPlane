@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     private string serverUrl = "http://192.168.1.23:3000/gameState";
     private List<Canvas> newBullefirst = new List<Canvas>();
     private int etape = 0;
+    const string Idle = "Idle";
+    const string Perdu = "Perdu";
+    const string Gagne = "Gagnant";
 
     void Start()
     {
@@ -187,6 +190,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("exclu" + firstPlayer.PlayerPseudo);
                 Canvas newBulle = Instantiate(firstPlayer.bulleequipe, firstPlayer.Mains.transform.position, firstPlayer.bulleequipe.transform.rotation);
                 newBullefirst.Add(newBulle);
+                Animator animator = firstPlayer.PlayerSkin.GetComponent<Animator>();
+                animator.Play(Perdu);
 
                 if (TimeNow > 5f)
                 {

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b619e1e2c03a254d8c52edb79d1bbf2, type: 3}
   m_Name: Player6
   m_EditorClassIdentifier: 
-  PlayerPseudo: Moi
-  PlayerSkin: {fileID: 3575770979607473854, guid: d9658e06509af2545b2457917bb73447, type: 3}
-  CanShoot: 0
+  PlayerPseudo: Kdkqxb
+  PlayerSkin: {fileID: 3540171818109723674, guid: 94de196144cc7ac4cb4b5a25ed0a1763, type: 3}
+  CanShoot: 1
   planeInZone: 0
   Mains: {fileID: 0}
   ZonePlayer: {fileID: 0}
-  ForceEnvoi: 0
-  directionplane: {x: 0, y: 10, z: -278}
+  ForceEnvoi: 14.85
+  directionplane: {x: 153, y: 10, z: 15}
   placement: {fileID: 0}
   Equipe: Red
   bulleequipe: {fileID: 1846352530785879646, guid: ca788501e59882d4499180885599ac43, type: 3}

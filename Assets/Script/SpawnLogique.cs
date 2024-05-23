@@ -20,6 +20,7 @@ public class SpawnLogique : MonoBehaviour
     public float LastForce = 0;
     private int QueueValue = 7;
     public PlayerController playercontroller;
+    
 
     void Start()
     {
@@ -71,6 +72,8 @@ public class SpawnLogique : MonoBehaviour
             {
                 if (player.CanShoot && player.planeInZone > 0)
                 {
+                   
+                  
                     player.directionplane = coord;
                     player.ForceEnvoi = force;
 
@@ -86,6 +89,7 @@ public class SpawnLogique : MonoBehaviour
                 }
                 if (player.CanShoot && player.planeInZone == 0)
                 {
+                    
                     player.directionplane = coord;
                     Debug.Log(player.directionplane);
                     PlayerController playerController = player.PlayerSkin.GetComponentInChildren<PlayerController>();

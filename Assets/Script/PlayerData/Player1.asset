@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player1
   m_EditorClassIdentifier: 
   PlayerPseudo: Gg
-  PlayerSkin: {fileID: 664904983191489078, guid: b72769fe187bfc74ca33b3662e5ffea0, type: 3}
+  PlayerSkin: {fileID: 4057779552294282004, guid: 3c5ba6afc43d41c40bc30a22e5044f0d, type: 3}
   CanShoot: 0
   planeInZone: 0
   Mains: {fileID: 0}
