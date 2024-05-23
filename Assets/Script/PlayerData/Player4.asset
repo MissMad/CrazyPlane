@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b619e1e2c03a254d8c52edb79d1bbf2, type: 3}
+  m_Name: Player4
+  m_EditorClassIdentifier: 
+  PlayerPseudo: efef
+  PlayerSkin: {fileID: 1339587467147603124, guid: e7a0927be75ed0a4fa0073421c06d143, type: 3}
+  CanShoot: 0
+  planeInZone: 0
+  ZonePlayer: {fileID: 0}
+  directionplane: {x: -22, y: 5, z: 140}
+  placement: {fileID: 0}
+  Equipe: Blue
